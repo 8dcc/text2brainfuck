@@ -19,7 +19,7 @@ You can edit this 3 variables, I might add an argument for them or something.
 ```python
 debug = False
 ```
-Boolean. If set to true, it will display information about each character on the screen. See [How it works](link)
+Boolean. If set to true, it will display information about each character on the screen. See [How it works](https://github.com/r4v10l1/text2brainfuck/blob/main/README.md#how-it-works)
 #### Mode
 ```python
 mode = "3"
