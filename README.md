@@ -4,6 +4,8 @@ I had a look at brainfuck this morning and I decided to write this script in pyt
 
 I spent way too much time on this shit, enjoy being edgy.
 
+You can test your brainfuck on https://copy.sh/brainfuck/, https://fatiherikli.github.io/brainfuck-visualizer/ or search on github.
+
 ## Installing
 
 ```bash
