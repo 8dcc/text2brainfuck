@@ -27,9 +27,9 @@ mode = "3"
 String. It is important to write the ```" "```.
 
 There are 3 modes:
-* Mode one: Will use a memory block for each character, and the next one as auxiliar when writing.
-* Mode two: Will write in the first block, and use the next one as auxiliar. After printing the final number, it will subtract 1 until the block is empty. Then it will begin to write the next value in the same block, using the second as auxiliar like it did in the previous value.
-* Mode three: Will use mode one for the first value, then it will check if the new value is bigger, smaller or the same as the old one. Depending on that, it will increase the old block value, reduce the old value until it reaches the new one, or it will print the value again, if it is the same.
+* **Mode one**: Will use a memory block for each character, and the next one as auxiliar when writing.
+* **Mode two**: Will write in the first block, and use the next one as auxiliar. After printing the final number, it will subtract 1 until the block is empty. Then it will begin to write the next value in the same block, using the second as auxiliar like it did in the previous value.
+* **Mode three**: Will use mode one for the first value, then it will check if the new value is bigger, smaller or the same as the old one. Depending on that, it will increase the old block value, reduce the old value until it reaches the new one, or it will print the value again, if it is the same.
 
 #### Match paragraphs
 ```python
