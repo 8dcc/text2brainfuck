@@ -1,4 +1,6 @@
-import re, sys
+# https://github.com/r4v10l1/text2brainfuck
+# https://gist.github.com/r4v10l1/34a13e265b528c4975a719abed3d45a0
+import re, sys, string
 
 #######  EDIT ME  #######
 enable_debug = True    # Boolean. Print the process on the screen.
@@ -13,6 +15,7 @@ def check_file_argv():
             print("\n [!] There was an error while reading the file.")
             exit(1)
         with open("stabilized.bf", "w") as writer:
+            # Edgy watermark
             writer.write("[ Stabilized using https://github.com/r4v0l1/text2brainfuck ]\n\n")
         return sys.argv[1]
     else:
@@ -21,33 +24,46 @@ def check_file_argv():
 
 def main():
     global enable_debug
+    remaining_characters_count = 0  # Define the value before using it
+    # The regex value for the 60 characters we will use in each line
     regular_expression = re.compile("([>.<,+-\[\]]{60})")
     with open(str(check_file_argv()), "r") as reader:
         while True:
-            remaining_characters_count = 0
             line = reader.readline()
             if not line:
                 break
-            elif (" " not in line) or (line is not "\n"):
+            # Check if there is an invalid character in the line (leters or an empty line)
+            if (any(char in line for char in string.ascii_letters)) or (line is "\n"):
+                with open("stabilized.bf", "a") as append:
+                    # Don't change that line
+                    append.write(line)
+            # If the line is valid
+            else:
+                # Search every 60 characters
                 results = regular_expression.findall(line.strip())
+                # Check the total characters, then check if there are any characters left
                 results_mult = len(results) * 60
                 remaining_characters_count = len(line.strip()) - results_mult
+                # Write every result (set of 60 characters) in a line until there are no left
                 for n in results:
+                    # Display on the screen if debug
                     if enable_debug:
                         print(n)
+                    # Write the line in the new file
                     with open("stabilized.bf", "a") as append:
                         append.write(n + "\n")
+                # If there are some characters left, add them
                 if remaining_characters_count is not 0:
+                    # Check the difference and then store the last digits in a variable
                     remaining_characters = line[-remaining_characters_count:]
+                    # Write the remaining characters in the last line (shorter than 60)
                     with open("stabilized.bf", "a") as append:
                         append.write(remaining_characters + "\n")
+                # Print those characters in the end of the output, if debug
                 if enable_debug:
                     print(remaining_characters)
                     print()
-                    print("^" + " " * (remaining_characters_count - 2) + "^")
+                    print("^" + " " * (remaining_characters_count - 2) + "^")  # Mark the lenght. Just for the flex
                     print(" REMAINING CHARACTERS: " + str(remaining_characters_count))
-            else:
-                with open("stabilized.bf", "a") as append:
-                    append.write(line)
 
 main()
