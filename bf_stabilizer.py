@@ -1,7 +1,7 @@
 import re, sys
 
 #######  EDIT ME  #######
-debug = False           # Boolean. Print the process on the screen.
+enable_debug = False    # Boolean. Print the process on the screen.
 #########################
 
 def check_file_argv():
@@ -20,28 +20,32 @@ def check_file_argv():
         exit(1)
 
 def main():
+    global enable_debug
     regular_expression = re.compile("([>.<,+-\[\]]{60})")
     with open(str(check_file_argv()), "r") as reader:
         while True:
+            remaining_characters_count = 0
             line = reader.readline()
             if not line:
                 break
-            if (" " not in line) or (line is not "\n"):
+            elif (" " not in line) or (line is not "\n"):
                 results = regular_expression.findall(line)
-                remaining_characters_count = len(line.strip()) - (len(results) * 60)
-                remaining_characters = line
+                results_mult = len(results) * 60
+                remaining_characters_count = len(line.strip()) - results_mult
                 for n in results:
-                    if debug:
+                    if enable_debug:
                         print(n)
                     with open("stabilized.bf", "a") as append:
                         append.write(n + "\n")
-                    if remaining_characters_count is not 0:
-                        remaining_characters = remaining_characters.replace(n, "")
                 if remaining_characters_count is not 0:
+                    remaining_characters = line[:remaining_characters_count]
                     with open("stabilized.bf", "a") as append:
                         append.write(remaining_characters + "\n")
-                if debug:
+                if enable_debug:
                     print(remaining_characters)
+                    print()
+                    print("^" + " " * (remaining_characters_count - 2) + "^")
+                    print(" REMAINING CHARACTERS: " + str(remaining_characters_count))
             else:
                 with open("stabilized.bf", "a") as append:
                     append.write(line)
