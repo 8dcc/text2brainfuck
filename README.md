@@ -14,6 +14,10 @@ cd text2brainfuck
 python text2bf.py [-f file.txt]
 ```
 
+```bash
+python bf_stabilizer.py file.bf  # If you want to make it pretty
+```
+
 ## Configuration
 You can edit this 3 variables, I might add an argument for them or something.
 
