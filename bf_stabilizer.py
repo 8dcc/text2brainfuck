@@ -1,7 +1,7 @@
 import re, sys
 
 #######  EDIT ME  #######
-enable_debug = False    # Boolean. Print the process on the screen.
+enable_debug = True    # Boolean. Print the process on the screen.
 #########################
 
 def check_file_argv():
@@ -29,7 +29,7 @@ def main():
             if not line:
                 break
             elif (" " not in line) or (line is not "\n"):
-                results = regular_expression.findall(line)
+                results = regular_expression.findall(line.strip())
                 results_mult = len(results) * 60
                 remaining_characters_count = len(line.strip()) - results_mult
                 for n in results:
@@ -38,7 +38,7 @@ def main():
                     with open("stabilized.bf", "a") as append:
                         append.write(n + "\n")
                 if remaining_characters_count is not 0:
-                    remaining_characters = line[:remaining_characters_count]
+                    remaining_characters = line[-remaining_characters_count:]
                     with open("stabilized.bf", "a") as append:
                         append.write(remaining_characters + "\n")
                 if enable_debug:
