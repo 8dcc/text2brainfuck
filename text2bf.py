@@ -64,7 +64,7 @@ def mode1(string2translate):
             # Add part 2 (mult. 2)
             bf_file.write("[<" + "+" * int(bf_plus_count_2) + ">-]<")
             # Add the extra characters
-            if bf_remaining is not 0:
+            if bf_remaining != 0:
                 bf_file.write("+" * bf_remaining)
             # Print the character
             bf_file.write(".>")
@@ -91,7 +91,7 @@ def mode2(string2translate):
         with open("output.bf", "a") as bf_file:
             bf_file.write(">" + "+" * bf_plus_count_1)  # Part 1
             bf_file.write("[<" + "+" * int(bf_plus_count_2) + ">-]<")  # Part 2
-            if bf_remaining is not 0:
+            if bf_remaining != 0:
                 bf_file.write("+" * bf_remaining)  # Add the remaining
             bf_file.write(".[-]")  # Print the character
             #  Instead of moving the memory block, delete until it's 0,
@@ -120,7 +120,7 @@ def mode3(string2translate):
             with open("output.bf", "a") as bf_file:
                 bf_file.write(">" + "+" * bf_plus_count_1)
                 bf_file.write("[<" + "+" * int(bf_plus_count_2) + ">-]<")
-                if bf_remaining is not 0:
+                if bf_remaining != 0:
                     bf_file.write("+" * bf_remaining)
                 bf_file.write(".")
             first_time = False
@@ -148,7 +148,7 @@ def mode3(string2translate):
                 with open("output.bf", "a") as bf_file:
                     bf_file.write(">" + "+" * bf_plus_count_1)
                     bf_file.write("[<" + "+" * int(bf_plus_count_2) + ">-]<")
-                    if bf_remaining is not 0:
+                    if bf_remaining != 0:
                         bf_file.write("+" * bf_remaining)
                     bf_file.write(".")
 
@@ -169,7 +169,7 @@ def mode3(string2translate):
                 with open("output.bf", "a") as bf_file:
                     bf_file.write(">" + "+" * bf_plus_count_1)
                     bf_file.write("[<" + "-" * int(bf_plus_count_2) + ">-]<")
-                    if bf_remaining is not 0:
+                    if bf_remaining != 0:
                         bf_file.write("-" * bf_remaining)
                     bf_file.write(".")
             else:
