@@ -33,7 +33,7 @@ def main():
             if not line:
                 break
             # Check if there is an invalid character in the line (leters or an empty line)
-            if (any(char in line for char in string.ascii_letters)) or (line is "\n"):
+            if (any(char in line for char in string.ascii_letters)) or (line == "\n"):
                 with open("stabilized.bf", "a") as append:
                     # Don't change that line
                     append.write(line)
@@ -53,7 +53,7 @@ def main():
                     with open("stabilized.bf", "a") as append:
                         append.write(n + "\n")
                 # If there are some characters left, add them
-                if remaining_characters_count is not 0:
+                if remaining_characters_count != 0:
                     # Check the difference and then store the last digits in a variable
                     remaining_characters = line[-remaining_characters_count:]
                     # Write the remaining characters in the last line (shorter than 60)
